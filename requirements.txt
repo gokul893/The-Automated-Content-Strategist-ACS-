@@ -1,0 +1,9 @@
+Requires ADK for real-world functionality, but uses standard libraries for this mock
+
+For a real run, you would need google-adk installed.
+
+Using standard Python for the mock structure
+
+You may need to install this depending on your environment:
+
+pip install google-adk
