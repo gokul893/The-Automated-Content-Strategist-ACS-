@@ -14,7 +14,6 @@ import re
 from typing import Dict, List, Any
 from dataclasses import dataclass
 
-
 # ============================================================================
 # MOCK ADK FRAMEWORK (Simulating Google ADK Structure)
 # ============================================================================
@@ -44,7 +43,6 @@ class FunctionTool:
             # Important for robustness (Observability concept)
             return ToolResult(output=None, success=False, error=str(e))
 
-
 class LlmAgent:
     """Base agent powered by an LLM (Simulating ADK's LlmAgent)."""
     
@@ -69,7 +67,6 @@ class LlmAgent:
     def _simulate_response(self, prompt: str, context: Dict) -> str:
         """Abstract method for specialized agent logic."""
         raise NotImplementedError
-
 
 class SequentialAgent:
     """
@@ -108,7 +105,6 @@ class SequentialAgent:
             print(current_output[:200] + "..." if len(current_output) > 200 else current_output)
         
         return current_output
-
 
 # ============================================================================
 # CUSTOM TOOLS IMPLEMENTATION
@@ -162,7 +158,6 @@ def web_search_tool(query: str, num_results: int = 5) -> Dict[str, Any]:
             "competitor_topics": ["industry analysis", "market trends"]
         }
 
-
 def readability_score(text: str) -> Dict[str, Any]:
     """
     CAPSTONE FEATURE: CUSTOM TOOL
@@ -198,7 +193,6 @@ def readability_score(text: str) -> Dict[str, Any]:
         "avg_sentence_length": round(words / max(sentences, 1), 1),
         "recommendations": recommendations
     }
-
 
 # ============================================================================
 # AGENT IMPLEMENTATIONS (LLM-Powered)
@@ -238,7 +232,6 @@ class ResearcherAgent(LlmAgent):
         
         # This JSON output becomes the 'previous_output' in the session state for the WriterAgent
         return json.dumps(research_output, indent=2)
-
 
 class WriterAgent(LlmAgent):
     """
@@ -292,7 +285,6 @@ Success in this dynamic environment requires a balanced approach that combines s
         
         return blog_post
 
-
 class EditorAgent(LlmAgent):
     """
     Agent 3: Uses the custom readability_score tool to check and refine the draft.
@@ -332,7 +324,6 @@ class EditorAgent(LlmAgent):
         # In a real ADK system, the LLM would rewrite the 'draft' variable here based on 'recommendations'
         # For simulation, we append the analysis to show the action was taken.
         return draft + editor_note
-
 
 # ============================================================================
 # MAIN SYSTEM ORCHESTRATION
